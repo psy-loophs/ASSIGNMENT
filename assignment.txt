@@ -1,0 +1,183 @@
+
+
+Part A - Short Questions
+
+*1. What is Artificial Intelligence?*
+Artificial Intelligence is the field of computer science that makes machines capable of performing tasks that normally require human intelligence. It includes reasoning, learning from experience, understanding language, perceiving environment, and decision making.
+> *Definition:* AI is the study and design of intelligent agents that perceive their environment and take actions to maximize chances of achieving their goals.
+
+*2. List any two uninformed search strategies.*
+Uninformed search = blind search, no extra knowledge about goal distance.
+1. Breadth First Search (BFS)
+2. Depth First Search (DFS)
+3. Uniform Cost Search, Depth Limited Search, Iterative Deepening DFS
+
+*3. Describe the structure of an intelligent agent*
+An agent = Architecture + Program. Structure:
+- *Sensors:* Perceive environment (camera, keyboard)
+- *Actuators:* Act on environment (motors, screen)
+- *Agent Function:* Maps percept sequence to action
+- *Agent Program:* Implements agent function on architecture
+- *Percept History / Knowledge Base:* Stores past percepts
+
+Flow: Environment -> Sensors -> Percepts -> Agent Program (decision) -> Actuators -> Environment
+
+*4. Explain briefly search in AI*
+Search is the process of finding a sequence of actions that transforms the initial state to goal state through a state space.
+Components: Initial state, Actions, Transition model, Goal test, Path cost. The search algorithm explores the state-space tree/graph.
+
+*5. Briefly explain propositional logic with an example*
+Propositional logic deals with propositions which can be True/False and connected by connectives (AND ^, OR v, NOT ¬, Implication ->, Biconditional <->).
+Example:
+P: It is raining
+Q: Road is wet
+Sentence: P -> Q (If it is raining, then road is wet)
+If P is True, Q must be True. Knowledge base can infer facts.
+
+*6. Discuss the use of heuristic in informed search*
+Heuristic is a function h(n) that estimates cost from node n to goal. It guides search to be more efficient.
+Use: In informed search like Greedy Best First Search and A_, heuristic helps prioritize promising nodes, reduces exploration, finds goal faster, and in A_ (f(n)=g(n)+h(n)) ensures optimality if h is admissible.
+
+---
+Part B
+
+*7. Role of intelligent agents in AI*
+Agent is central to AI. Roles:
+- Provides framework to model intelligent behavior
+- Acts autonomously, perceives and interacts
+- Basis for problem solving, robotics, software assistants
+- Types allow different intelligence levels from simple reflex to learning agents
+
+*8. Differentiate between informed and uninformed search*
+Feature	Uninformed	Informed
+Knowledge	No goal distance info	Uses heuristic h(n)
+Efficiency	Expands many nodes, costly	More efficient, directed
+Example	BFS, DFS, UCS	Best First, A*, Hill Climbing
+Completeness	Generally complete	May not be optimal if heuristic bad
+*9. Best First Search Algorithm*
+function BEST-FIRST-SEARCH(problem):
+  open = priority queue ordered by h(n)
+  open.add(initial state)
+  closed = empty set
+  while open not empty:
+    n = open.pop() // lowest h
+    if GoalTest(n): return n
+    add n to closed
+    for each successor of n:
+      if not in closed and not in open:
+        open.add(successor) with h(successor)
+  return failure
+*10. Depth First Search Algorithm*
+function DFS(problem):
+  stack.push(initial state)
+  visited = {initial}
+  while stack not empty:
+    node = stack.pop()
+    if GoalTest(node): return node
+    for child in reverse(Expand(node)):
+      if child not in visited:
+        visited.add(child)
+        stack.push(child)
+  return failure
+Uses LIFO, low memory, but can get stuck in deep paths.
+
+*11. Hill Climbing Search Algorithm*
+function HILL-CLIMBING(problem):
+  current = initial state
+  loop:
+    neighbor = highest valued successor of current
+    if neighbor.value <= current.value: return current // peak
+    current = neighbor
+It's local search, keeps moving to better neighbor.
+
+---
+Part C - Detailed (Choose A or B)
+
+*12 A. BFS to reach goal state*
+BFS explores level by level using FIFO queue.
+Example: Start S, Goal G. Graph S->A,B ; A->C,D ; B->G
+Steps: Queue=, visit S, queue=, visit A, queue=, visit B, queue=, visit C... finally visit G. BFS guarantees shortest path in unweighted graph. Completeness: Yes.[S][A][B][C][D][G]
+
+*12 B. A_ informed search*
+A_ uses f(n) = g(n) + h(n) where g=actual cost from start, h=estimated cost to goal.
+It expands node with lowest f. Keeps open list sorted by f. It is optimal if h is admissible (never overestimates).
+Example: Path finding. Start to goal with obstacles. A* evaluates all neighbors, calculates f, chooses min, reaches goal with optimal total cost.
+
+*13 A. Predicate Logic - "All Humans are Mortal"*
+In First Order Logic:
+∀x (Human(x) -> Mortal(x))
+If Socrates is Human: Human(Socrates)
+Then by Modus Ponens: Mortal(Socrates)
+
+*13 B. Propositional logic for Knowledge Representation*
+KB contains facts as propositions.
+Example:
+P: Battery Charged
+Q: Car Starts
+Rule: P -> Q
+Fact: P is True
+Inference: Q is True.
+Used in expert systems, but limited - cannot represent objects/relations like FOL.
+
+*14 A. Role of AI in improving education*
+- Personalized learning: Adaptive platforms adjust difficulty
+- Intelligent Tutoring Systems
+- Automated grading, feedback
+- Chatbots for doubt solving
+- Content creation, detection of weak students
+
+*14 B. Impact across fields*
+Healthcare: Diagnosis, drug discovery, medical imaging
+Education: Personalized, admin automation
+Entertainment: Recommendation (Netflix), game AI, generative AI for music/video
+
+*15 A. Utility-based agent in path finding*
+Utility-based agent chooses action that maximizes expected utility, not just goal achievement. In path finding, utility considers distance, safety, fuel, time. It uses utility function U(state). Example: Two paths to goal, one short but risky, other long but safe. Agent picks path with highest utility (balance of cost and preference).
+
+*15 B. Goal-based vs Model-based agent*
+Model-based: Maintains internal model of world (how environment evolves). Can handle partially observable. Ex: Agent that knows door closed.
+Goal-based: Extends model-based by having goal information. Selects actions to achieve goal. Searches for sequences leading to goal. More flexible than simple reflex.
+
+*16 A. Uniform Cost Search*
+UCS is uninformed search that expands node with lowest path cost g(n). Uses priority queue by g(n). Optimal for any step cost. Complete. Example: Finding cheapest route. If all costs equal, becomes BFS.
+
+*16 B. Simple Reflex Agent*
+Acts only on current percept, using condition-action rules. No memory.
+Example: Vacuum cleaner agent:
+If percept = Dirty -> Action = Suck
+If percept = Clean -> Action = Move.
+Works only if environment fully observable.
+
+*17 A. Hill Climbing - local and global optima*
+Hill climbing moves to better neighbor until peak. Problems:
+- Local maxima: Peak lower than global optimum - algorithm stuck. Solution: Random restarts
+- Plateau: Flat area, no guidance. Solution: Random walk
+- Ridge: Narrow uphill path hard to follow
+Technique used for optimization, TSP, but may need Simulated Annealing to escape local optima to reach global optima.
+
+*17 B. Best First Search to reach goal*
+Uses heuristic to go towards goal quickly. Example: Navigation. h(n)=straight line distance. Algorithm always expands city closest to Bucharest. Fast but not optimal. May go wrong if heuristic misleads.
+
+*18 A. Structure of intelligent agent*
+Already explained in Q3 + detailed: Sensors, actuators, percept sequence, agent function, knowledge base, learning element. Diagram: Agent <-> Environment.
+
+*18 B. Learning Agent vs Simple Reflex*
+Simple Reflex	Learning Agent
+No memory, rule-based	Has learning element, performance element, critic, problem generator
+Works in fully observable	Works in unknown environments
+Cannot improve	Improves performance from experience
+Ex: Thermostat	Ex: Self-driving car
+*19 A. Design simple intelligent agent for home automation*
+Goal: Control lights, temp, security.
+Sensors: Temperature sensor, motion sensor, light sensor, smartphone input
+Actuators: Lights, AC, locks, alarm
+Working: If motion detected at night -> Turn on light. If temp > 25C -> Turn on AC. If no one home -> Lock doors, activate security. Uses simple reflex + model-based rules. Can be extended to learning (learn user routine).
+
+*19 B. Design simple goal-based agent*
+Example: Delivery robot.
+Goal: Reach location B.
+Components: Model of map, sensors (GPS, camera), actuators (wheels)
+Working: Perceives current position, has goal state (B). Searches possible paths (BFS/A*), selects action sequence minimizing cost, executes. If obstacle, replans.
+
+---
+
