@@ -1,177 +1,146 @@
 # ============================================================
-# S3 AI ASSIGNMENT 1
+# DBMS ASSIGNMENT
 # ============================================================
 
 
-# 1. What is Artificial Intelligence?
+# Comparative Study of Relational, Hierarchical and Network Data Models
 
-Artificial Intelligence (AI) is the branch of computer science focused on building intelligent agents capable of perceiving their environment, reasoning, making rational decisions, and taking actions to achieve specific goals.
 
+# Introduction
 
-# 2. List any two uninformed search strategies.
+Database Management System (DBMS) is an essential part of modern computing used to store, organize, manage and retrieve data efficiently. Different data models, such as relational, hierarchical and network models, provide different methods of organizing and representing data. At the same time, database security plays a vital role in protecting stored information from unauthorized access, data theft and loss. Understanding database models and security measures helps in designing reliable, efficient and secure database systems.
 
-* Breadth-First Search (BFS)
-* Depth-First Search (DFS)
 
-(Other uninformed search methods include Depth-Limited Search and Uniform Cost Search).
+# 1. Relational Data Model
 
+The relational data model represents data in the form of tables, also called relations. Each table consists of rows and columns. Rows are called tuples, and columns are called attributes. Relationships between tables can be established using primary keys and foreign keys.
 
-# 3. Describe the structure of an intelligent agent.
+**Example:** A student database may contain a table with student ID, name and department.
 
-An intelligent agent perceives its environment through sensors and acts upon it using actuators.
+## Advantages
 
-* **Architecture:** The physical machinery or hardware (e.g., sensors, motors, processing unit).
-* **Agent Program:** The software implementation or algorithm that maps percept inputs to appropriate actions.
-* **Sensors & Actuators:** Sensors (e.g., cameras, motion detectors) gather environment data, while actuators (e.g., wheels, switches) execute physical actions.
+- Simple and easy to understand.
+- Reduces data redundancy through proper database design.
+- Supports flexible data retrieval using SQL.
+- Provides data integrity and security features.
 
+## Disadvantages
 
-# 4. Explain briefly search in Artificial Intelligence.
+- Complex queries involving many tables may require more processing.
+- Not always suitable for highly interconnected data without careful design.
 
-Search is a fundamental problem-solving process in AI where an agent evaluates sequences of actions to transition from an initial state to a desired goal state.
 
-## Problem-Solving Cycle:
+# 2. Hierarchical Data Model
 
-* **Goal Formulation:** Defining the target goal.
-* **Problem Formulation:** Identifying states, actions, and step costs.
-* **Search:** Finding a path of actions leading to the goal.
-* **Execution:** Carrying out the selected action sequence.
+The hierarchical data model organizes data in the form of a tree structure. It consists of parent and child records. Each child record generally has only one parent, while a parent can have multiple children. Data is accessed by following predefined paths through the hierarchy.
 
+**Example:** In a college database, a college may have several departments, and each department may have multiple students.
 
-# 5. Briefly explain propositional logic with an example.
+## Advantages
 
-Propositional logic (Boolean logic) is a formal logic system where statements (propositions) evaluate strictly to either True (T) or False (F).
+- Simple structure for data with clear parent-child relationships.
+- Efficient access when relationships follow a fixed hierarchy.
+- Suitable for representing organizational structures.
 
-* **Connectives:** Atomic propositions are combined using \neg (NOT), \wedge (AND), \vee (OR), \rightarrow (IMPLIES), and \leftrightarrow (BICONDITIONAL).
+## Disadvantages
 
-* **Example:**
-  * Let P = "It is raining"
-  * Let Q = "The ground is wet"
-  * Compound Proposition (P \rightarrow Q): "If it is raining, then the ground is wet."
+- Difficult to represent many-to-many relationships.
+- Changes to the structure can be complicated.
+- Accessing data outside predefined paths may be difficult.
 
 
-# 6. Discuss the use of heuristic in informed search.
+# 3. Network Data Model
 
-In informed search, a heuristic function h(n) provides an estimated cost from the current node n to the goal node. Heuristics inject domain-specific knowledge to prioritize nodes that appear closer to the goal, drastically reducing search time and memory overhead compared to uninformed search.
+The network data model represents data using a graph-like structure. Unlike the hierarchical model, a child record can have multiple parent records. It supports one-to-one, one-to-many and many-to-many relationships.
 
+**Example:** In a college database, one student can enrol in several courses, and each course can have many students.
 
-# 7. Explain the role of intelligent agents in Artificial Intelligence.
+## Advantages
 
-Intelligent agents represent the central operational framework of AI. They autonomously observe environmental conditions, process information, make rational choices, and execute actions to achieve defined targets across real-world systems such as robotics, automated diagnosis, and smart environments.
+- Supports complex relationships between records.
+- Handles many-to-many relationships effectively.
+- Can provide efficient access through predefined links.
 
+## Disadvantages
 
-# 8. Differentiate between informed and uninformed search.
+- More complex to design and maintain.
+- Users may need to understand the links between records.
+- Changes to the database structure can be difficult.
 
-| Feature | Uninformed (Blind) Search | Informed (Heuristic) Search |
-|---|---|---|
-| Domain Knowledge | Uses no extra information about goal proximity. | Uses heuristic estimates h(n) to guide search. |
-| Efficiency | Can be slow and memory-intensive. | Generally faster and explores fewer nodes. |
-| Algorithms | BFS, DFS, UCS | Best-First Search, Hill Climbing, A^* Search |
 
+# Comparative Table
 
-# 9. Write Best-First Search algorithm.
+| Feature | Relational Model | Hierarchical Model | Network Model |
+|---|---|---|---|
+| Structure | Tables | Tree | Graph |
+| Relationship | Through keys | Parent-child | Linked records |
+| Multiple parents | Supported through relationships between tables | Generally not supported | Supported |
+| Many-to-many relationships | Supported through related tables | Difficult to represent | Supported directly |
+| Complexity | Relatively simple | Simple for hierarchical data | More complex |
+| Data access | Queries using SQL | Traversal through a tree | Traversal through linked records |
+| Common use | Business and student databases | Hierarchical data structures | Complex interconnected records |
 
-* Create an empty priority queue (Open list).
-* Insert the start node into the priority queue.
-* Remove the node with the lowest heuristic value h(n).
-* Check if it is the goal node; if yes, stop and return the path.
-* Otherwise, expand the node, evaluate h(n) for all child nodes, and insert them into the priority queue.
-* Repeat steps 3–5 until the goal is found or the queue is empty.
 
+# Database Security: Issues and Solutions
 
-# 10. Write Depth-First Search algorithm.
 
-* Initialize a stack and push the start node.
-* Create a visited set to track expanded nodes.
-* Pop the top node from the stack.
-* If it has not been visited, mark it as visited.
-* Check if it is the goal node; if yes, terminate search.
-* Generate unvisited child nodes and push them onto the stack.
-* Backtrack when reaching a dead end.
-* Repeat until the goal is found or the stack is empty.
+## Major Database Security Issues
 
+### 1. Unauthorized Access
 
-# 11. Write Hill Climbing search algorithm.
+Unauthorized users may access confidential information without permission.
 
-* Evaluate the initial state.
-* Set current state = initial state.
-* Generate neighboring states.
-* Compare neighboring states with the current state.
-* If a neighbor provides a better heuristic score, update current state to that neighbor.
-* Repeat step 3 from the new state.
-* Stop when no neighbor is better than the current state.
+### 2. Data Theft and Leakage
 
+Sensitive information, such as personal details, passwords and financial records, may be stolen or exposed.
 
-# 12. (A) Breadth-First Search vs (B) A^* Search
+### 3. SQL Injection
 
-* **BFS:** Explores search spaces level-by-level using a FIFO Queue. It guarantees the shortest path in unweighted graphs but has high space complexity O(b^d).
+Attackers may insert malicious SQL commands through vulnerable applications to access or modify database information.
 
-* **A^* Search:** Combines actual path cost g(n) and estimated heuristic cost h(n) using the evaluation function:
-   
-   
-   It selects nodes with the lowest f(n) value, guaranteeing an optimal solution when h(n) is admissible.
+### 4. Data Modification
 
+Unauthorized changes to records can affect the accuracy and reliability of the database.
 
-# 13. Logic Representation
+### 5. Malware and Ransomware
 
-## (A) Predicate Logic for "All Humans are Mortal":
+Malicious software can damage database files, steal information or make data inaccessible.
 
-   
+### 6. Insider Threats
 
-## (B) Knowledge Representation using Propositional Logic:
+Employees or other authorized users may misuse their access privileges to steal, disclose or modify data.
 
-Encodes facts and rules as propositions.
 
-* **Fact:** P ("Smoke detected")
-* **Rule:** P \rightarrow Q ("If smoke detected, then trigger alarm")
-* **Inference (Modus Ponens):** From P and P \rightarrow Q, deduce Q ("Trigger alarm").
+## Solutions to Database Security Issues
 
+### 1. Authentication
 
-# 14. Applications of AI
+Use strong passwords and multi-factor authentication to verify the identity of users before allowing access.
 
-* **Education:** Adaptive learning software, automated essay grading, intelligent tutoring systems.
-* **Healthcare:** Disease diagnosis, medical image processing, robotic surgery support.
-* **Entertainment:** Content recommendations (e.g., Netflix, YouTube), AI non-player characters (NPCs) in gaming.
+### 2. Authorization and Access Control
 
+Assign permissions according to users' responsibilities. Users should access only the data required for their work.
 
-# 15. Goal-Based Agent vs Model-Based Reflex Agent
+### 3. Data Encryption
 
-* **Model-Based Reflex Agent:** Maintains internal memory/state to track unobserved aspects of the world and acts via condition-action rules.
-* **Goal-Based Agent:** Combines state tracking with explicit goal descriptions and search/planning algorithms to find action sequences that achieve the target goal.
+Encrypt sensitive data both when it is stored and when it is transmitted over a network.
 
+### 4. Regular Backup and Recovery
 
-# 16. Uniform Cost Search (UCS) vs Simple Reflex Agent
+Maintain regular backups and test recovery procedures to restore data after accidental deletion, system failure or cyberattacks.
 
-* **Uniform Cost Search (UCS):** Uninformed graph search strategy that expands the node with the lowest path cost g(n) using a priority queue, guaranteeing optimal paths in weighted graphs.
-* **Simple Reflex Agent:** The simplest agent type; operates strictly on current percepts using IF-THEN rules without maintaining past history. (Example: Automatic room light controller).
+### 5. Software Updates
 
+Regularly update the DBMS, operating system and related applications to fix known security vulnerabilities.
 
-# 17. Hill Climbing (Local Optima vs Global Optima)
+### 6. Protection Against SQL Injection
 
-* **Local Optima (Local Maximum):** A state better than all immediate neighbors but inferior to the overall best state. Hill Climbing can get trapped here because no local move improves the score.
-* **Global Optima (Global Maximum):** The single best solution in the entire state space.
+Use parameterized queries or prepared statements, validate inputs and avoid constructing SQL queries directly from untrusted user input.
 
 
-# 18. Compare Learning Agent with Simple Reflex Agent
+# Conclusion
 
-| Property | Simple Reflex Agent | Learning Agent |
-|---|---|---|
-| Adaptability | Fixed condition-action rules. | Learns and adapts from feedback. |
-| Memory | No memory of past states. | Stores knowledge to improve over time. |
-| Components | Sensors, Rules, Actuators. | Performance element, Critic, Learning element, Problem generator. |
-
-
-# 19. Design a Simple Intelligent Agent for Home Automation
-
-## PEAS Description:
-
-* **Performance Measure:** Energy efficiency, temperature/light comfort, safety.
-* **Environment:** House rooms, ambient light level, temperature.
-* **Actuators:** Smart relay switches, HVAC controllers, alarm buzzers.
-* **Sensors:** Motion sensors, photodetectors, temperature sensors.
-
-## Working Mechanism:
-
-Motion sensors detect human presence, light sensors measure ambient light, and the agent program triggers smart switches to turn lights on/off automatically.
+In conclusion, database models and database security are important aspects of database management. Relational, hierarchical and network models offer different ways to organize data according to application requirements. Proper security measures, such as authentication, access control, encryption and regular backups, help protect databases from various threats. Therefore, selecting a suitable data model and implementing effective security practices are essential for maintaining the efficiency, reliability and safety of database systems.
 
 
 # ============================================================
