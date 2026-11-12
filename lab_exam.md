@@ -878,18 +878,4 @@ FROM employee;
 
 ---
 
-## Corrections Made to the Record
 
-- Kept phone numbers as `VARCHAR` so they are treated as identifiers and can contain leading zeroes or different lengths.
-- Used complete MySQL syntax for adding, modifying and dropping columns, renaming tables and updating records.
-- Added `DROP TABLE IF EXISTS` before exercises that recreate a table, preventing table-already-exists errors during a top-to-bottom run.
-- Kept the two different `student` table structures in separate exercises and explicitly dropped the earlier version before creating the next one.
-- Used `DECIMAL(5,2)` for student percentages and `DECIMAL(10,2)` for salaries and prices so decimal values can be stored accurately.
-- Corrected the logical-operator conditions to match the wording of the questions: “more than” is written with `>` rather than `>=`.
-- Used distinct table names `first_table` and `second_table` for the set-operation exercise.
-- Replaced the handwritten `MINUS` operator with MySQL's `EXCEPT` operator. MySQL supports `INTERSECT` and `EXCEPT` from version 8.0.31 onwards; alternatives for older versions are included.
-- Corrected the salary increase result: `2000 + 1500 = 3500`, not `35000`.
-- Used backticks for the alias `NEW SALARY` because the alias contains a space.
-- Standardized SQL keywords, identifiers, capitalization, quotes, commas, parentheses and statement terminators.
-
-**Scope note:** The uploaded PDF continues with later programs, but this file intentionally stops at Program 10 (Aliases), as requested.
