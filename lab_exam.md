@@ -2,7 +2,6 @@
 
 **Scope:** SQL table creation, insertion, updation, filtering, aggregate functions, mathematical functions, logical operators, set operations and column aliases.
 
-> This file contains GitHub-flavoured Markdown in plain text. It can be pasted directly into `lab.md` on GitHub.
 >
 > Run the SQL statements in order, using the same MySQL database. The examples use MySQL-compatible syntax. Statements such as `DROP TABLE IF EXISTS` are included where needed so that the exercises can be rerun without table-already-exists errors.
 
